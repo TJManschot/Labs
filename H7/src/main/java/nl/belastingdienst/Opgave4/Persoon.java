@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Persoon {
     public final String naam;
-    private HashMap<String, Rekening> rekening;
+    public HashMap<String, Rekening> rekening;
 
     public Persoon(String naam){
         this.naam = naam;
@@ -13,7 +13,7 @@ public class Persoon {
     }
 
     public void createRekening(Bank bank, String iban) {
-        rekening.put(iban, new Rekening(bank, this, iban));
+        new Rekening(bank, this, iban);
     }
     public void addRekening(Rekening rekening) {
         this.rekening.put(rekening.iban, rekening);

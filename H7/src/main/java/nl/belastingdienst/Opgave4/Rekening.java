@@ -15,6 +15,9 @@ public class Rekening {
 
         this.saldo = new Euro(0);
         this.rentePercentage = 0.0;
+
+        houder.addRekening(this);
+        verstrekker.addRekening(this);
     }
 
     public Euro getSaldo() {

@@ -1,18 +1,20 @@
 package nl.belastingdienst.Opgave4;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Bank {
     public final String naam;
-    HashMap<String, Rekening> rekening = new HashMap<>();
+    public HashMap<String, Rekening> rekening = new HashMap<>();
 
     public Bank(String naam) {
         this.naam = naam;
     }
 
     public void createRekening(Persoon houder, String iban) {
-        rekening.put(iban, new Rekening(this, houder, iban));
+        new Rekening(this, houder, iban);
+    }
+    public void addRekening(Rekening rekening) {
+        this.rekening.put(rekening.iban, rekening);
     }
 
     public static void overschrijving(Rekening vanRekening, Rekening naarRekening, Euro bedrag) {
@@ -30,7 +32,8 @@ public class Bank {
 
     public void renteOverzicht() {
         for(Rekening r : rekening.values()) {
-            System.out.println("Rekening " + r.iban + " krijgt dit jaar " + r.renteOverTijd(1).toString() + " rente.");
+            System.out.println("Rekening " + r.iban + " van " + r.houder.naam + " bij de " + r.verstrekker.naam
+                    + " krijgt dit jaar " + r.renteOverTijd(1).toString() + " rente.");
         }
     }
 }

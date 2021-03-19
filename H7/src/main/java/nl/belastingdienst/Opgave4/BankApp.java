@@ -2,33 +2,56 @@ package nl.belastingdienst.Opgave4;
 
 import java.util.HashMap;
 
-// Stuurt de banken aan
 public class BankApp {
     public static void main(String[] args){
-        HashMap<String, Persoon> persoon = new HashMap<>();
         HashMap<String, Bank> bank = new HashMap<>();
+        HashMap<String, Persoon> persoon = new HashMap<>();
 
-        bank.put("ING", new Bank("ING"));
+        init(bank, persoon);
 
-        persoon.put("Thomas", new Persoon("Thomas"));
-        persoon.put("Bram", new Persoon("Bram"));
+        bank.get("ING").createRekening(persoon.get("Thomas"), "00_00");
+        bank.get("ING").createRekening(persoon.get("Bram"), "00_01");
 
-        bank.get("ING").createRekening(persoon.get("Thomas"), "000");
-        bank.get("ING").createRekening(persoon.get("Bram"), "111");
+        persoon.get("Thomas").createRekening(bank.get("RaboBank"), "01_00");
+        persoon.get("Thomas").createRekening(bank.get("ABN AMRO"), "02_00");
+        persoon.get("Bram").createRekening(bank.get("ABN AMRO"), "02_01");
 
-        bank.get("ING").rekening.get("000").setRentePercentage(0.03);
-        bank.get("ING").rekening.get("111").setRentePercentage(0.05);
+        // Banken       ING, RaboBank, ABN AMRO
+        // Personen     Thomas, Bram
+        // Rekeningen   00_00, 00_01, 01_00, 02_00, 02_01
 
-        bank.get("ING").rekening.get("000").stort(new Euro(10000));
-        Bank.overschrijving(bank.get("ING").rekening.get("000"),bank.get("ING").rekening.get("111"), new Euro(4000));
-        Bank.overschrijving(bank.get("ING").rekening.get("111"),bank.get("ING").rekening.get("000"), new Euro(7500));
+        persoon.get("Thomas").rekening.get("01_00").stort(new Euro(80_00));
+        bank.get("ING").rekening.get("00_01").stort(new Euro(20_00));
 
-        System.out.println(bank.get("ING").rekening.get("000").getSaldo().toString());
-        System.out.println(bank.get("ING").rekening.get("111").getSaldo().toString());
+        bank.get("RaboBank").rekening.get("01_00").setRentePercentage(0.03);
+        persoon.get("Bram").rekening.get("00_01").setRentePercentage(0.05);
+
+        persoon.get("Bram").rekening.get("00_01").overschrijving(persoon.get("Thomas").rekening.get("01_00"), new Euro(40_00));
+        Bank.overschrijving(persoon.get("Thomas").rekening.get("01_00"), persoon.get("Bram").rekening.get("00_01"), new Euro(40_00));
+
+        System.out.println("Thomas heeft op rekening 01_00 " + persoon.get("Thomas").rekening.get("01_00").getSaldo().toString() + " staan.");
+        System.out.println("Bram heeft op rekening 00_01 " + persoon.get("Bram").rekening.get("00_01").getSaldo().toString() + " staan.");
 
         System.out.print("De ING heeft in totaal " + bank.get("ING").totaalDebet().toString() + " uit staan.\n");
 
         bank.get("ING").renteOverzicht();
-        System.out.println("Thomas krijgt in 10 jaar " + bank.get("ING").rekening.get("000").renteOverTijd(10).toString() + " aan rente.");
+        bank.get("RaboBank").renteOverzicht();
+        bank.get("ABN AMRO").renteOverzicht();
+        System.out.println("Thomas krijgt in 10 jaar " + persoon.get("Thomas").rekening.get("01_00").renteOverTijd(10).toString() + " aan rente op rekening 01_00.");
+    }
+    private static void init(HashMap<String, Bank> bank, HashMap<String, Persoon> persoon) {
+        Bank ing_00 = new Bank("ING");
+        Bank rabobank_01 = new Bank("RaboBank");
+        Bank abn_amro_02 = new Bank("ABN AMRO");
+
+        Persoon thomas = new Persoon("Thomas");
+        Persoon bram = new Persoon("Bram");
+
+        bank.put(ing_00.naam, ing_00);
+        bank.put(rabobank_01.naam, rabobank_01);
+        bank.put(abn_amro_02.naam, abn_amro_02);
+
+        persoon.put(thomas.naam, thomas);
+        persoon.put(bram.naam, bram);
     }
 }
