@@ -15,32 +15,22 @@ public class Bank {
         rekening.put(iban, new Rekening(this, houder, iban));
     }
 
-    public static String valutaToString(int bedrag) {
-        if (bedrag % 100 >= 10) {
-            return "€" + bedrag / 100 + "," + bedrag % 100;
-        } else {
-            return "€" + bedrag / 100 + ",0" + bedrag % 100;
-        }
-    }
-
-    public static boolean overschrijving(Rekening vanRekening, Rekening naarRekening, int bedrag) {
-        if (vanRekening.neemOp(bedrag)) {
+    public static void overschrijving(Rekening vanRekening, Rekening naarRekening, Euro bedrag) {
+        try {
+            vanRekening.neemOp(bedrag);
             naarRekening.stort(bedrag);
-            return true;
-        } else {
-            System.out.println("Dit bedrag kan niet overgeschreven worden doordat het saldo van de herkomstrekening te laag is.");
-            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public int getTotalInBank() {
-        return rekening.values().stream().mapToInt(Rekening::getSaldo).sum();
+    public Euro totaalDebet() {
+        return new Euro(rekening.values().stream().map(Rekening::getSaldo).mapToInt(Euro::getWaarde).sum());
     }
 
     public void renteOverzicht() {
-        for (Map.Entry r : rekening.entrySet()) {
-            System.out.println("Rekening " + rekening.get(r.getKey()).iban + " krijgt dit jaar "
-                    + valutaToString(rekening.get(r.getKey()).calculateInterest(1) - rekening.get(r.getKey()).getSaldo()) + " rente.");
+        for(Rekening r : rekening.values()) {
+            System.out.println("Rekening " + r.iban + " krijgt dit jaar " + r.renteOverTijd(1).toString() + " rente.");
         }
     }
 }

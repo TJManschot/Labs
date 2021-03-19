@@ -1,11 +1,11 @@
 package nl.belastingdienst.Opgave4;
 
 public class Rekening {
-    private Persoon houder;
-    private final Bank verstrekker;
+    public final Persoon houder;
+    public final Bank verstrekker;
     public final String iban;
 
-    private int saldo;
+    private final Euro saldo;
     private double rentePercentage;
 
     public Rekening(Bank verstrekker, Persoon houder, String iban) {
@@ -13,53 +13,38 @@ public class Rekening {
         this.houder = houder;
         this.iban = iban;
 
-        this.saldo = 0;
+        this.saldo = new Euro(0);
         this.rentePercentage = 0.0;
     }
 
-    public Persoon getHouder(){
-        return this.houder;
+    public Euro getSaldo() {
+        return saldo;
     }
-
-    public boolean neemOp(int amount) {
-        if (this.saldo > amount) {
-            this.saldo -= amount;
-            return true;
+    public void neemOp(Euro bedrag) {
+        if (saldo.isLargerThan(bedrag)) {
+            saldo.subtract(bedrag);
         } else {
-            return false;
+            throw new SaldoTeLaagException();
         }
     }
-    public void stort(int amount) {
-        this.saldo += amount;
-    }
-    public int getSaldo() {
-        return this.saldo;
-    }
-    public StringBuilder saldoToString(){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Het saldo op ");
-        sb.append(this.iban);
-        sb.append(" van ");
-        sb.append(this.houder.naam);
-        sb.append(" is momenteel ");
-        sb.append(Bank.valutaToString(this.saldo));
-        sb.append(".\n");
-
-        return sb;
+    public void stort(Euro bedrag) {
+        saldo.add(bedrag);
     }
 
     public double getRentePercentage() {
-        return this.rentePercentage;
+        return rentePercentage;
     }
     public void setRentePercentage(double rentePercentage) {
         this.rentePercentage = rentePercentage;
     }
-    public int calculateInterest(int n) {
-        if (n == 1) {
-            return (int) ((1 + rentePercentage) * this.saldo);
-        } else {
-            return (int) ((1 + rentePercentage) * calculateInterest(n-1));
-        }
+
+    public void overschrijving(Rekening naarRekening, Euro bedrag) {
+        Bank.overschrijving(this, naarRekening, bedrag);
+    }
+    public Euro renteOverTijd(int jaren) {
+        Euro result = new Euro(saldo.getWaarde());
+        result.multiply(Math.pow(1.0 + rentePercentage, jaren));
+        result.subtract(saldo);
+        return result;
     }
 }
