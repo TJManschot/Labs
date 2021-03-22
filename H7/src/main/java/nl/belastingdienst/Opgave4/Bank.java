@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Bank {
     public final String naam;
-    public HashMap<String, Rekening> rekening = new HashMap<>();
+    private final HashMap<String, Rekening> rekening = new HashMap<>();
 
     public Bank(String naam) {
         this.naam = naam;
@@ -15,6 +15,9 @@ public class Bank {
     }
     public void addRekening(Rekening rekening) {
         this.rekening.put(rekening.iban, rekening);
+    }
+    public Rekening getRekening(String iban) {
+        return rekening.get(iban);
     }
 
     public static void overschrijving(Rekening vanRekening, Rekening naarRekening, Euro bedrag) {

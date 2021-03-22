@@ -13,6 +13,7 @@
         <module>H5</module>
         <module>H6</module>
         <module>H7</module>
+        <module>H8</module>
     </modules>
 
     <properties>

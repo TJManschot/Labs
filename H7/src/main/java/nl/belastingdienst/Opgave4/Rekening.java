@@ -24,7 +24,7 @@ public class Rekening {
         return saldo;
     }
     public void neemOp(Euro bedrag) {
-        if (saldo.isLargerThan(bedrag)) {
+        if (!saldo.isSmallerThan(bedrag)) {
             saldo.subtract(bedrag);
         } else {
             throw new SaldoTeLaagException();

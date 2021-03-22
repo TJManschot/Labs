@@ -1,11 +1,10 @@
 package nl.belastingdienst.Opgave4;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Persoon {
     public final String naam;
-    public HashMap<String, Rekening> rekening;
+    private final HashMap<String, Rekening> rekening;
 
     public Persoon(String naam){
         this.naam = naam;

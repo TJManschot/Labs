@@ -16,28 +16,33 @@ public class BankApp {
         persoon.get("Thomas").createRekening(bank.get("ABN AMRO"), "02_00");
         persoon.get("Bram").createRekening(bank.get("ABN AMRO"), "02_01");
 
-        // Banken       ING, RaboBank, ABN AMRO
-        // Personen     Thomas, Bram
-        // Rekeningen   00_00, 00_01, 01_00, 02_00, 02_01
+        /*
+            Bank        Rekening    Persoon
+            ING         00_00       Thomas
+            ING         00_01       Bram
+            RaboBank    01_00       Thomas
+            ABN AMRO    02_00       Thomas
+            ABN AMRO    02_01       Bram
+         */
 
-        persoon.get("Thomas").rekening.get("01_00").stort(new Euro(80_00));
-        bank.get("ING").rekening.get("00_01").stort(new Euro(20_00));
+        persoon.get("Thomas").getRekening("01_00").stort(new Euro(80_00));
+        bank.get("ING").getRekening("00_01").stort(new Euro(20_00));
 
-        bank.get("RaboBank").rekening.get("01_00").setRentePercentage(0.03);
-        persoon.get("Bram").rekening.get("00_01").setRentePercentage(0.05);
+        bank.get("RaboBank").getRekening("01_00").setRentePercentage(0.03);
+        persoon.get("Bram").getRekening("00_01").setRentePercentage(0.05);
 
-        persoon.get("Bram").rekening.get("00_01").overschrijving(persoon.get("Thomas").rekening.get("01_00"), new Euro(40_00));
-        Bank.overschrijving(persoon.get("Thomas").rekening.get("01_00"), persoon.get("Bram").rekening.get("00_01"), new Euro(40_00));
+        persoon.get("Bram").getRekening("00_01").overschrijving(persoon.get("Thomas").getRekening("01_00"), new Euro(40_00));
+        Bank.overschrijving(persoon.get("Thomas").getRekening("01_00"), persoon.get("Bram").getRekening("00_01"), new Euro(40_00));
 
-        System.out.println("Thomas heeft op rekening 01_00 " + persoon.get("Thomas").rekening.get("01_00").getSaldo().toString() + " staan.");
-        System.out.println("Bram heeft op rekening 00_01 " + persoon.get("Bram").rekening.get("00_01").getSaldo().toString() + " staan.");
+        System.out.println("Thomas heeft op rekening 01_00 " + persoon.get("Thomas").getRekening("01_00").getSaldo().toString() + " staan.");
+        System.out.println("Bram heeft op rekening 00_01 " + persoon.get("Bram").getRekening("00_01").getSaldo().toString() + " staan.");
 
         System.out.print("De ING heeft in totaal " + bank.get("ING").totaalDebet().toString() + " uit staan.\n");
 
         bank.get("ING").renteOverzicht();
         bank.get("RaboBank").renteOverzicht();
         bank.get("ABN AMRO").renteOverzicht();
-        System.out.println("Thomas krijgt in 10 jaar " + persoon.get("Thomas").rekening.get("01_00").renteOverTijd(10).toString() + " aan rente op rekening 01_00.");
+        System.out.println("Thomas krijgt in 10 jaar " + persoon.get("Thomas").getRekening("01_00").renteOverTijd(10).toString() + " aan rente op rekening 01_00.");
     }
     private static void init(HashMap<String, Bank> bank, HashMap<String, Persoon> persoon) {
         Bank ing_00 = new Bank("ING");
