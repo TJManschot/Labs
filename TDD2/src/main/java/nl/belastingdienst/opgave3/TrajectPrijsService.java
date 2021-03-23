@@ -4,8 +4,13 @@ public class TrajectPrijsService {
     private TrajectNaarTrajectEenhedenService trajectNaarTrajectEenhedenService  = new TrajectNaarTrajectEenhedenService();
     private TrajectEenhedenNaarPrijsService trajectEenhedenNaarPrijsService = new TrajectEenhedenNaarPrijsService();
 
-    public int getTrajectPrijs(String van, String naar) {
-        return trajectEenhedenNaarPrijsService.getTrajectEenhedenPrijs(trajectNaarTrajectEenhedenService.getTrajectEenheden(van, naar));
+    public int getTrajectPrijs(String van, String naar) throws InvalidLocationException {
+        try {
+            return trajectEenhedenNaarPrijsService.getTrajectEenhedenPrijs(trajectNaarTrajectEenhedenService.getTrajectEenheden(van, naar));
+        } catch (InvalidLocationException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     public void setTrajectNaarTrajectEenhedenService(TrajectNaarTrajectEenhedenService trajectNaarTrajectEenhedenService) {
