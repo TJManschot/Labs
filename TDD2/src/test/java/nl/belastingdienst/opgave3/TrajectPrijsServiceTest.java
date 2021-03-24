@@ -21,10 +21,9 @@ public class TrajectPrijsServiceTest {
 
     @BeforeEach
     void init() {
-        when(mockedTrajectEenhedenNaarPrijsService.getTrajectEenhedenPrijs(0)).thenReturn(10);
-        when(mockedTrajectEenhedenNaarPrijsService.getTrajectEenhedenPrijs(-1)).thenThrow(new InvalidLocationException());
-        when(mockedTrajectNaarTrajectEenhedenService.getTrajectEenheden("Zwolle", "Nijmegen")).thenReturn(0);
-        when(mockedTrajectNaarTrajectEenhedenService.getTrajectEenheden("Zwolle", "Bielefeld")).thenReturn(-1);
+        when(mockedTrajectEenhedenNaarPrijsService.getTrajectEenhedenPrijs(eq(0))).thenReturn(10);
+        when(mockedTrajectNaarTrajectEenhedenService.getTrajectEenheden(eq("Zwolle"), eq("Nijmegen"))).thenReturn(0);
+        when(mockedTrajectNaarTrajectEenhedenService.getTrajectEenheden(eq("Zwolle"), eq("Bielefeld"))).thenThrow(new InvalidLocationException());
     }
 
     @Test
