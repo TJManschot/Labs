@@ -16,6 +16,7 @@
         <module>H7</module>
         <module>TDD2</module>
         <module>H8</module>
+        <module>H10</module>
     </modules>
 
     <properties>

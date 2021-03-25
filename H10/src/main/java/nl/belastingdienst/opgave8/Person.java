@@ -1,6 +1,6 @@
-package nl.belastingdienst.opgave2;
+package nl.belastingdienst.opgave8;
 
-public class Person {
+public class Person extends Human {
     private static final int MAX_AGE = 130;
 
     private final String name;
@@ -15,6 +15,11 @@ public class Person {
         this.name = name;
         this.age = age;
         this.gender = gender;
+    }
+
+    @Override
+    public String greet() {
+        return "Hello, my name is " + this.name + ". Nice to meet you!";
     }
 
     public void haveBirthday() throws PersonDiedException {
