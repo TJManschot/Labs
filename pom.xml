@@ -18,6 +18,8 @@
         <module>H8</module>
         <module>H10</module>
         <module>H11</module>
+        <module>H12</module>
+        <module>TDD1</module>
     </modules>
 
     <properties>
