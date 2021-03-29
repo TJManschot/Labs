@@ -37,7 +37,7 @@ class StringCalculatorTest {
 
     @Test
     void testStringCalculatorNegativeNumbers() {
-        NumberFormatException e = assertThrows(NumberFormatException.class, () -> stringCalculator.add("-2"));
-        assertEquals("Negatives not allowed! You passed -2.", e.getMessage());
+        NumberFormatException e = assertThrows(NumberFormatException.class, () -> stringCalculator.add("-20"));
+        assertEquals("Negatives not allowed! You passed -20.", e.getMessage());
     }
 }

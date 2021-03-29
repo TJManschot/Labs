@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class StringCalculator {
     public int add(String input){
-        String delimiter = ",|\n";
+        String delimiter = "[,\n]";
         if (input.startsWith("//")) {
             delimiter = input.substring(2,3);
         }
