@@ -10,7 +10,7 @@ public class Person extends Human {
     }
 
     @NestedClass
-    private class HistoryRecord {
+    private static class HistoryRecord {
         private final String description;
 
         public HistoryRecord(String description) {
