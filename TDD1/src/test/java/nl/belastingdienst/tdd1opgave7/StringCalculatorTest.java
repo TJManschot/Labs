@@ -36,8 +36,20 @@ class StringCalculatorTest {
     }
 
     @Test
-    void testStringCalculatorNegativeNumbers() {
-        NumberFormatException e = assertThrows(NumberFormatException.class, () -> stringCalculator.add("-20"));
+    void testStringCalculatorNegativeNumber() {
+        NumberFormatException e = assertThrows(NumberFormatException.class, () -> stringCalculator.add("42, -20, 100"));
         assertEquals("Negatives not allowed! You passed -20.", e.getMessage());
+    }
+
+    @Test
+    void testStringCalculatorNegativeNumbers() {
+        NumberFormatException e = assertThrows(NumberFormatException.class, () -> stringCalculator.add("42, -20, 100, -5, -10, 2"));
+        assertEquals("Negatives not allowed! You passed -20, -5, -10.", e.getMessage());
+    }
+
+    @Test
+    void testStringCalculatorIgnoreLargerThan1000() {
+        assertEquals(2, stringCalculator.add("2, 1001"));
+        assertEquals(1002, stringCalculator.add("2, 1000"));
     }
 }
