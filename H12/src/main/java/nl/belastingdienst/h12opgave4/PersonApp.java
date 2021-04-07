@@ -21,7 +21,7 @@ public class PersonApp {
 
         for(Method m : Person.class.getMethods()) {
             if (m.isAnnotationPresent(Author.class)) {
-                System.out.println(m.getAnnotation(Author.class).value());
+                System.out.println(m.toString() + " " + m.getAnnotation(Author.class).value());
             }
         }
     }
