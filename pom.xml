@@ -14,14 +14,15 @@
         <module>H5</module>
         <module>H6</module>
         <module>H7</module>
-        <module>TDD2</module>
         <module>H8</module>
         <module>H10</module>
         <module>H11</module>
         <module>H12</module>
-        <module>TDD1</module>
         <module>H13</module>
-        <module>SQL</module>
+        <module>TDD1</module>
+        <module>TDD2</module>
+        <module>TDD</module>
+        <module>Databases</module>
     </modules>
 
     <properties>
@@ -53,12 +54,17 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>3.0.0+</version>
+                <version>1.7.25</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.logging.slf4j</groupId>
+                <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-slf4j-impl</artifactId>
-                <version>3.0.0+</version>
+                <version>2.11.2</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.22</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
