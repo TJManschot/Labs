@@ -10,17 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>H4</module>
-        <module>H5</module>
-        <module>H6</module>
-        <module>H7</module>
-        <module>H8</module>
-        <module>H10</module>
-        <module>H11</module>
-        <module>H12</module>
-        <module>H13</module>
-        <module>TDD1</module>
-        <module>TDD2</module>
+        <module>Java</module>
         <module>TDD</module>
         <module>Databases</module>
     </modules>
