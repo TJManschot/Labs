@@ -9,11 +9,11 @@ public abstract class PubsDao {
     protected Connection connection = new DatabaseConnector().getConnection();
     protected String table;
 
-    public ResultSet search(String column, String target) throws SQLException {
+    protected ResultSet search(String column, String target) throws SQLException {
         return search(new String[] {column}, new String[] {target});
     }
 
-    public ResultSet search(String[] columns, String[] targets) throws SQLException {
+    protected ResultSet search(String[] columns, String[] targets) throws SQLException {
         if (columns.length != targets.length || columns.length <= 0) {
             throw new IllegalArgumentException("Please make sure columns and target are equally long and have at least one element.");
         }
