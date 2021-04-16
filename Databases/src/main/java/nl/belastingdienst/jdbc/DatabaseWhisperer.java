@@ -8,7 +8,13 @@ import java.sql.SQLException;
 public class DatabaseWhisperer {
     public static void main(String[] args) {
         try {
-            for( Author author : AuthorsDao.getInstance().findByName(new Name().firstName("Marjorie").lastName("Green"))) {
+            for( Author author : AuthorsDao.getInstance().searchByName(new Name().firstName("Marjorie").lastName("Green"))) {
+                System.out.println(author.toString());
+            }
+            for( Author author : AuthorsDao.getInstance().searchByCity("Oakland")) {
+                System.out.println(author.toString());
+            }
+            for( Author author : AuthorsDao.getInstance().searchByState("UT")) {
                 System.out.println(author.toString());
             }
         } catch (SQLException throwables) {

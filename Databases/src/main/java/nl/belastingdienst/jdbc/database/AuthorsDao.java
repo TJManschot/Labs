@@ -20,12 +20,23 @@ public class AuthorsDao extends PubsDao {
         return instance;
     }
 
-    public List<Author> findByName(Name name) throws SQLException {
+    public List<Author> searchByName(Name name) throws SQLException {
         ResultSet result = search(
                                 new String[] { "au_fname",          "au_lname" },
                                 new String[] { name.getFirstName(), name.getLastName() }
                             );
+        return getListFrom(result);
+    }
 
+    public List<Author> searchByCity(String city) throws SQLException {
+        return getListFrom(search("city", city));
+    }
+
+    public List<Author> searchByState(String state) throws SQLException {
+        return getListFrom(search("state", state));
+    }
+
+    private List<Author> getListFrom(ResultSet result) throws SQLException {
         List<Author> authors = new LinkedList<>();
 
         while(result.next()) {

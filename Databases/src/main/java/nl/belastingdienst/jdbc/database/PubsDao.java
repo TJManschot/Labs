@@ -30,7 +30,7 @@ public abstract class PubsDao {
 
         PreparedStatement statement = connection.prepareStatement(sb.toString());
         for(int i = 1; i <= columns.length; i++) {
-            statement.setString(i, targets[i]);
+            statement.setString(i, targets[i - 1]);
         }
         return statement.executeQuery();
     }
