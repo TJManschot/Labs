@@ -1,11 +1,27 @@
 package nl.belastingdienst.jdbc.database;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class DatabaseConnector {
-    private static final String URL = "jdbc:mysql://localhost:3306/pubs?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "admin";
+    static Properties properties = new Properties();
+
+    private static String USER;
+    private static String PASSWORD;
+    private static String URL;
+
+    static {
+        try (InputStream file = DatabaseConnector.class.getClassLoader().getResourceAsStream("database.properties")) {
+            properties.load(file);
+            PASSWORD = properties.getProperty("password");
+            USER = properties.getProperty("user");
+            URL = properties.getProperty("url");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private Connection connection;
 
