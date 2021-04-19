@@ -15,9 +15,10 @@ public class DatabaseConnector {
     static {
         try (InputStream file = DatabaseConnector.class.getClassLoader().getResourceAsStream("database.properties")) {
             properties.load(file);
-            PASSWORD = properties.getProperty("password");
-            USER = properties.getProperty("user");
+
             URL = properties.getProperty("url");
+            USER = properties.getProperty("user");
+            PASSWORD = properties.getProperty("password");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,15 +9,8 @@ import java.util.List;
 public class AuthorsDao extends PubsDao {
     private static AuthorsDao instance;
 
-    private AuthorsDao() {
+    public AuthorsDao() {
         table = "authors";
-    }
-
-    public static AuthorsDao getInstance() {
-        if (instance == null) {
-            instance = new AuthorsDao();
-        }
-        return instance;
     }
 
     public List<Author> searchByName(Name name) throws SQLException {
