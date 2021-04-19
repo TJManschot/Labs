@@ -13,6 +13,13 @@ public class PhoneNumber {
         return phoneNumber;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        PhoneNumber other = (PhoneNumber) obj;
+
+        return other.getPhoneNumber().equals(this.phoneNumber);
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

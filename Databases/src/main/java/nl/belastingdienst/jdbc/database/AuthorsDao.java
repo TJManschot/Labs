@@ -7,13 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AuthorsDao extends PubsDao {
-    private static AuthorsDao instance;
-
     public AuthorsDao() {
         table = "authors";
     }
 
-    public List<Author> searchByName(Name name) throws SQLException {
+    public List<Author> searchByName(Name name) {
         ResultSet result = search(
                                 new String[] { "au_fname",          "au_lname" },
                                 new String[] { name.getFirstName(), name.getLastName() }
@@ -21,19 +19,23 @@ public class AuthorsDao extends PubsDao {
         return getListFrom(result);
     }
 
-    public List<Author> searchByCity(String city) throws SQLException {
+    public List<Author> searchByCity(String city) {
         return getListFrom(search("city", city));
     }
 
-    public List<Author> searchByState(String state) throws SQLException {
+    public List<Author> searchByState(String state) {
         return getListFrom(search("state", state));
     }
 
-    private List<Author> getListFrom(ResultSet result) throws SQLException {
+    private List<Author> getListFrom(ResultSet result) {
         List<Author> authors = new LinkedList<>();
 
-        while(result.next()) {
-            authors.add(parseAuthor(result));
+        try {
+            while(result.next()) {
+                authors.add(parseAuthor(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return authors;
     }

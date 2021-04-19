@@ -19,6 +19,14 @@ public class Name {
         return firstName + " " + lastName;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Name other = (Name) obj;
+
+        return other.getFirstName().equals(this.firstName)
+                && other.getLastName().equals(this.lastName);
+    }
+
     public String getFirstName() {
         return firstName;
     }

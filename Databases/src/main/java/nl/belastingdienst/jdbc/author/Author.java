@@ -41,6 +41,17 @@ public class Author {
              "\nphone number = " + phoneNumber.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Author other = (Author) obj;
+
+        return other.getId().equals(this.id)
+                && other.getName().equals(this.name)
+                && other.getAddress().equals(this.address)
+                && other.getContract() == this.getContract()
+                && other.getPhoneNumber().equals(this.phoneNumber);
+    }
+
     public String getId() {
         return id;
     }

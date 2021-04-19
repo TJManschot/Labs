@@ -31,6 +31,16 @@ public class Address {
         return address + " " + city + " " + state;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Address other = (Address) obj;
+
+        return other.getAddress().equals(this.address)
+                && other.getCity().equals(this.city)
+                && other.getState().equals(this.state)
+                && other.getZip() == this.zip;
+    }
+
     public String getAddress() {
         return address;
     }
