@@ -9,7 +9,7 @@ public class DatabaseConnector {
 
     private Connection connection;
 
-    public DatabaseConnector() {
+    DatabaseConnector() {
         try {
             this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException throwables) {
@@ -17,7 +17,7 @@ public class DatabaseConnector {
         }
     }
 
-    public Connection getConnection() {
+    Connection getConnection() {
         return connection;
     }
 
