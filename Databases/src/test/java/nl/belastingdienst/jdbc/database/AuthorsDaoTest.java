@@ -11,8 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -32,16 +32,17 @@ class AuthorsDaoTest {
                 .getClassLoader()
                 .getResourceAsStream("AuthorsTest.sql");
 
-        if (in != null) {
-            String script = new BufferedReader(new InputStreamReader(in))
-                    .lines()
-                    .collect(joining());
+        if (in == null)
+            throw new NullPointerException("Input file not found.");
 
-            new DatabaseConnector()
-                    .getConnection()
-                    .createStatement()
-                    .execute(script);
-        }
+        String script = new BufferedReader(new InputStreamReader(in))
+                .lines()
+                .collect(joining());
+
+        new DatabaseConnector()
+                .getConnection()
+                .createStatement()
+                .execute(script);
     }
 
     @Test
