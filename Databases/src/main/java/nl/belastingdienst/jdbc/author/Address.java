@@ -33,12 +33,14 @@ public class Address {
 
     @Override
     public boolean equals(Object obj) {
-        Address other = (Address) obj;
+        if(!(obj instanceof Address))
+            return false;
 
+        Address other = (Address) obj;
         return other.getAddress().equals(this.address)
-                && other.getCity().equals(this.city)
-                && other.getState().equals(this.state)
-                && other.getZip() == this.zip;
+                    && other.getCity().equals(this.city)
+                    && other.getState().equals(this.state)
+                    && other.getZip() == this.zip;
     }
 
     public String getAddress() {

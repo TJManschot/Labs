@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -27,19 +28,20 @@ class AuthorsDaoTest {
 
     @BeforeAll
     static void beforeAll() throws SQLException {
+        InputStream in = AuthorsDaoTest.class
+                .getClassLoader()
+                .getResourceAsStream("AuthorsTest.sql");
 
-        String script = new BufferedReader(
-                new InputStreamReader(
-                        AuthorsDaoTest.class
-                                .getClassLoader()
-                                .getResourceAsStream("AuthorsTest.sql")
-                )
-        ).lines().collect(joining());
+        if (in != null) {
+            String script = new BufferedReader(new InputStreamReader(in))
+                    .lines()
+                    .collect(joining());
 
-        new DatabaseConnector()
-                .getConnection()
-                .createStatement()
-                .execute(script);
+            new DatabaseConnector()
+                    .getConnection()
+                    .createStatement()
+                    .execute(script);
+        }
     }
 
     @Test

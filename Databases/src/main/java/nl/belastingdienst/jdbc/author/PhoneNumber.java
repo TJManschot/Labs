@@ -15,8 +15,10 @@ public class PhoneNumber {
 
     @Override
     public boolean equals(Object obj) {
-        PhoneNumber other = (PhoneNumber) obj;
+        if(!(obj instanceof PhoneNumber))
+            return false;
 
+        PhoneNumber other = (PhoneNumber) obj;
         return other.getPhoneNumber().equals(this.phoneNumber);
     }
 

@@ -21,8 +21,10 @@ public class Name {
 
     @Override
     public boolean equals(Object obj) {
-        Name other = (Name) obj;
+        if(!(obj instanceof Name))
+            return false;
 
+        Name other = (Name) obj;
         return other.getFirstName().equals(this.firstName)
                 && other.getLastName().equals(this.lastName);
     }

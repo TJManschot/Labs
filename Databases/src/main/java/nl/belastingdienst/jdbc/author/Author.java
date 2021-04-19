@@ -43,8 +43,10 @@ public class Author {
 
     @Override
     public boolean equals(Object obj) {
-        Author other = (Author) obj;
+        if(!(obj instanceof Author))
+            return false;
 
+        Author other = (Author) obj;
         return other.getId().equals(this.id)
                 && other.getName().equals(this.name)
                 && other.getAddress().equals(this.address)
