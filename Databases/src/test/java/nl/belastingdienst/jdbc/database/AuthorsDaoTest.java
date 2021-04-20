@@ -54,13 +54,11 @@ class AuthorsDaoTest {
 
     @Test
     void testSearchByName() {
-
         Name name = new Name().firstName("Thomas").lastName("Test-Engine");
         Address address = new Address().address("").city("").state("").zip(0);
         PhoneNumber phoneNumber = new PhoneNumber().phoneNumber("");
 
         Author expected = new Author().address(address).name(name).phoneNumber(phoneNumber).id("1").contract(0.0);
-
         List<Author> authorList = target.searchByName(name);
 
         assertEquals(expected, authorList.get(0));

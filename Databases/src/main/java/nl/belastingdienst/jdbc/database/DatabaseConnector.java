@@ -13,7 +13,7 @@ public class DatabaseConnector {
     private static String URL;
 
     static {
-        try (InputStream file = DatabaseConnector.class.getClassLoader().getResourceAsStream("database.properties")) {
+        try (InputStream file = DatabaseConnector.class.getClassLoader().getResourceAsStream("jdbc_database.properties")) {
             properties.load(file);
 
             URL = properties.getProperty("url");
