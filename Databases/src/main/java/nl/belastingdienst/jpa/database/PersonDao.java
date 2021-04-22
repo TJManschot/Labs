@@ -13,4 +13,8 @@ public class PersonDao extends Dao<Person, Long> {
     protected PersonDao(EntityManager entityManager, Class<? extends Person> currentClass) {
         super(entityManager, currentClass);
     }
+//
+//    public Person findByName(String name) {
+//        return entityManager.find(currentClass, name);
+//    }
 }

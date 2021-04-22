@@ -31,7 +31,7 @@ class DaoTest {
     }
 
     @Test
-    void find() {
+    void testFind() {
         Long dummyKey = 0L;
         Integer expected = 1;
         when(entityManagerMock.find(Integer.class, 0L)).thenReturn(expected);
@@ -42,7 +42,7 @@ class DaoTest {
     }
 
     @Test
-    void insert() {
+    void testInsert() {
         when(entityManagerMock.getTransaction()).thenReturn(entityTransactionMock);
 
         doNothing().when(entityTransactionMock).begin();

@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
  */
 public abstract class Dao<E, K> {
     protected EntityManager entityManager;
-    private final Class<? extends E> currentClass;
+    protected final Class<? extends E> currentClass;
 
     protected Dao(EntityManager entityManager, Class<? extends E> currentClass) {
         this.entityManager = entityManager;
@@ -19,6 +19,10 @@ public abstract class Dao<E, K> {
     public E find(K primaryKey) {
         return entityManager.find(currentClass, primaryKey);
     }
+
+//    public List<E> findAll() {
+//        return entityManager.createNamedQuery(currentClass.getName() + ".findAll", currentClass).getResultList();
+//    }
 
     public void insert (E e) {
         entityManager.getTransaction().begin();
