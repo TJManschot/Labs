@@ -1,0 +1,70 @@
+.header {
+    display: flex;
+    padding: 20px 10px 0;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+
+    font-size: xxx-large;
+    color: deeppink;
+    flex-grow: 1;
+}
+
+#button-addTrip {
+    flex-grow: 0;
+    height: fit-content;
+    margin: auto;
+
+    color: orangered;
+    border-color: green;
+    background-color: aqua;
+}
+
+body {
+    margin: 0 25% 0 25%;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: yellow;
+    color: blue;
+}
+
+#trips {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.trip {
+    background: #D34927;
+    color: lightblue;
+    padding: 10px;
+    margin: 5px 0 5px 0;
+}
+
+.stad {
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+.jaar {
+    float: right;
+}
+
+.omschrijving {
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+footer {
+    background-color: darkolivegreen;
+    color: lightpink;
+    font-weight: bold;
+    font-size: small;
+    text-align: right;
+    padding: 40px 10px 0 0;
+    margin: 5px 0 0 0;
+}

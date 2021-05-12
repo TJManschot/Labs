@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <title>My trips</title>
+    <link rel="stylesheet" href="css/default.css">
+    <script src="scripts/trips.js" defer></script>
+</head>
+<body>
+<div class="header">
+    <h1>~~~~ My trips FTW ~~~~</h1>
+    <button onclick="addTrip()" id="button-addTrip">Add trip</button>
+</div>
+
+<ul id="trips">
+    <li class="trip">
+        <div class="jaar">2009</div>
+        <div class="stad">Rome</div>
+        <div class="omschrijving">w000000t!!!! Rome rulez! k ging for teh lulz na Rome ent was vet relaxt</div>
+    </li>
+    <li class="trip">
+        <div class="jaar">2019</div>
+        <div class="stad">Berlijn</div>
+        <div class="omschrijving">Mooie plaats hoor. Vooral bomen 539 t/m 545 stonden er mooi bij.</div>
+    </li>
+    <li class="trip">
+        <div class="jaar">2019</div>
+        <div class="stad">Boedapest</div>
+        <div class="omschrijving">Lelijke stinkstad, ik ben blij dat ik er niet woon.</div>
+    </li>
+</ul>
+
+<footer>
+    Thomas &copy; <span id="copyright-year">year</span>
+</footer>
+
+</body>
+
+<template id="trip-template">
+    <li class="trip">
+        <div class="jaar"></div>
+        <div class="stad"></div>
+        <div class="omschrijving"></div>
+    </li>
+</template>
+</html>

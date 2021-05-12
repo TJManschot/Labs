@@ -4,7 +4,7 @@ import nl.belastingdienst.jpa.person.*;
 
 import javax.persistence.EntityManager;
 
-public class PersonDao extends Dao<Person, Long> {
+public class PersonDao<E extends Person> extends Dao<Person, Long> {
 
     public PersonDao(EntityManager entityManager) {
         super(entityManager, Person.class);
@@ -13,8 +13,10 @@ public class PersonDao extends Dao<Person, Long> {
     protected PersonDao(EntityManager entityManager, Class<? extends Person> currentClass) {
         super(entityManager, currentClass);
     }
-//
-//    public Person findByName(String name) {
-//        return entityManager.find(currentClass, name);
+
+//    @SuppressWarnings("unchecked")
+//    public E findByName(String name) {
+//        return (E) entityManager.createQuery("SELECT e FROM " + this.getClass(). + " e WHERE name =: e.name")
+//                .getSingleResult();
 //    }
 }

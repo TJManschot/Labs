@@ -15,7 +15,7 @@ public class JpaApp {
             Persistence.createEntityManagerFactory("MySQL-jpalabs").createEntityManager();
 
     public static void main(String[] args) {
-        PersonDao dao = new PersonDao(entityManager);
+        PersonDao<Person> dao = new PersonDao<>(entityManager);
 
         log.info("Personen aanmaken...");
         Person thomas = new Person().name("Thomas").age(27);
@@ -26,6 +26,5 @@ public class JpaApp {
         dao.insert(bob);
 
         System.out.println(dao.find(thomas.getId()).toString());
-//        System.out.println(dao.findByName("Thomas"));
     }
 }
