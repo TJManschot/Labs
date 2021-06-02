@@ -4,6 +4,7 @@ public class Contact {
     private String name;
     private int age;
 
+    @SuppressWarnings("unused")
     public Contact() {}
 
     public Contact(String name, int age) {
